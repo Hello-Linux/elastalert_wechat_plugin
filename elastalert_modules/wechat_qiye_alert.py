@@ -18,15 +18,17 @@ class WeChatAlerter(Alerter):
     #企业号id(在你申请的企业信息里面可以看到)，secret(在你创建企业应用小程序之后可以看到secret字段每个应用对应一个secret)，应用id(应用程序的AgentId)
 
     required_options = frozenset(['corp_id','secret','agent_id'])
-
+'''
+下面这些数值是依赖Alerter函数从你的rule配置文件中获取的,所以不需要赋值
+'''
     def __init__(self, *args):
         super(WeChatAlerter, self).__init__(*args)
-        self.corp_id = self.rule.get('corp_id', 'xxxxxx')     #企业号id
-        self.secret = self.rule.get('secret', 'xxxxxx')   #secret
-        self.agent_id = self.rule.get('agent_id', 'xxxx')   #应用id
+        self.corp_id = self.rule.get('corp_id', '')     #企业号id
+        self.secret = self.rule.get('secret', '')   #secret
+        self.agent_id = self.rule.get('agent_id', '')   #应用id
 
-        self.party_id = self.rule.get('xxxx')       #部门id(在你的通讯录中可以看到部门ID)
-        self.user_id = self.rule.get('user_id', 'xxxxx')     #用户id，多人用 | 分割，全部用 @all
+        self.party_id = self.rule.get('')       #部门id(在你的通讯录中可以看到部门ID)
+        self.user_id = self.rule.get('user_id', '')     #用户id，多人用 | 分割，全部用 @all
         self.tag_id = self.rule.get('tag_id', '')       #标签id
         self.access_token = ''                   #微信身份令牌
         self.expires_in=datetime.datetime.now() - datetime.timedelta(seconds=60)
