@@ -15,6 +15,9 @@
 (2)之后使用python2.7的pip管理工具安装依赖包 pip install -r requirements.txt pip install -r requirements-dev.txt
 (3)执行python2.7 setup.py install 即可
 
+
+
+
 * 第二步
 修改配置文件
 
@@ -23,8 +26,13 @@
 * 第三步:
 将elastalert_wechat_plugin目录下的所有文件拷贝到elastalert目录下即可
 
-
 * 第四步
+创建Elasticsearch索引
+进入我们的项目目录./elastalert/elastalert/  执行python2.7 create_index.py即可
+
+这个命令会在elasticsearch创建索引，便于ElastAlert将有关其查询及其警报的信息和元数据保存回Elasticsearch。这不是必须的步骤，但是强烈建议创建。因为对于审计，测试很有用，并且重启elastalert不影响计数和发送alert。默认情况下，创建的索引叫 elastalert_status
+
+* 第五步
 启动
 python2.7 -m elastalert.elastalert --verbose --config config.yaml --rule es_rules/wechart.yaml  config指定配置文件路径  rule指定你的微信报警文件
 
