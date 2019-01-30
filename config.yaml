@@ -1,0 +1,147 @@
+# This is the folder that contains the rule yaml files
+# Any .yaml file will be loaded as a rule
+#ElastAlert将加载规则配置文件的地方，它将尝试加载文件夹中的每个.yaml文件
+rules_folder: es_rules
+
+# How often ElastAlert will query Elasticsearch
+# The unit can be anything from weeks to seconds
+# 这里主要是elastalert查询我们elasticsearch的频率支持时分秒-hours minutes seconds
+run_every:
+  minutes: 1
+
+# ElastAlert will buffer results from the most recent
+# period of time, in case some log sources are not in real time
+#是查询窗口的大小，从每个查询运行的时间向后延伸
+buffer_time:
+  minutes: 5
+
+# The Elasticsearch hostname for metadata writeback
+# Note that every rule can have its own Elasticsearch host
+# 是Elasticsearch集群的地址，ElastAlert将存储有关其状态、查询运行、警报和错误的数据。每个规则也可以设置不同的elasticsearch主机进行查询
+es_host: 192.168.1.223
+
+# The Elasticsearch port
+# Elasticsearch对应的端口
+es_port: 9200
+
+# The AWS region to use. Set this when using AWS-managed elasticsearch
+#aws_region: us-east-1
+
+# The AWS profile to use. Use this if you are using an aws-cli profile.
+# See http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
+# for details
+#profile: test
+
+# Optional URL prefix for Elasticsearch
+#es_url_prefix: elasticsearch
+
+# Connect with TLS to Elasticsearch
+# （可选的）是否使用TLS;连接到es_host；设置为True或False
+use_ssl: False
+
+# Verify TLS certificates
+# （可选的）是否验证TLS证书; 设置为True或False，默认是True
+verify_certs: False
+
+# GET request with body is the default option for Elasticsearch.
+# If it fails for some reason, you can pass 'GET', 'POST' or 'source'.
+# See http://elasticsearch-py.readthedocs.io/en/master/connection.html?highlight=send_get_body_as#transport
+# for details
+#es_send_get_body_as: GET
+
+# Option basic-auth username and password for Elasticsearch
+# 如果你开启了elasticsearch的身份认证在这里写上用户名以及密码
+#es_username: someusername
+#es_password: somepassword
+
+# Use SSL authentication with client certificates client_cert must be
+# a pem file containing both cert and key for client
+#verify_certs: Falseo
+#（可选的）PEM证书的路径
+#ca_certs: /path/to/cacert.pem
+#client_cert: /path/to/client_cert.pem
+#（可选的） 作为客户端密钥使用的私钥文件的路径
+#client_key: /path/to/client_key.key
+
+# The index on es_host which is used for metadata storage
+# This can be a unmapped index, but it is recommended that you run
+# elastalert-create-index to set a mapping
+# 是ElastAlert将存储数据的索引名称
+writeback_index: elastalert_status
+
+# If an alert fails for some reason, ElastAlert will retry
+# sending the alert until this time period has elapsed
+alert_time_limit:
+  days: 1
+#++++++++++++++++++++++++++++++下面主要是针对重复报警+++++++++++++++++++++++++++++
+# 10 分钟内如果有重复报警，那么当 name 不同时，会当做不同的报警处理 可以是数组
+#query_key:
+#  - name
+
+# 10分钟内相同的报警不会重复发送
+#realert:
+#  minutes: 10
+
+# 指数级扩大 realert 时间，中间如果有报警
+# 则按照 5 -> 10 -> 20 -> 40 -> 60 不断增大报警时间到制定的最大时间，
+# 如果之后报警减少，则会慢慢恢复原始 realert 时间
+#exponential_realert:
+#  hours: 1
+
+# 根据报警的内容，将相同的报警按照name进行聚合
+aggregation_key: name
+
+# 聚合报警的内容，只展示 name 与 message
+#summary_table_fields:
+#  - name
+#  - message
+#+++++++++++++++++++++++++++++++结束++++++++++++++++++++++++++++++++++++++++++++
+# Custom logging configuration
+# If you want to setup your own logging configuration to log into
+# files as well or to Logstash and/or modify log levels, use
+# the configuration below and adjust to your needs.
+# Note: if you run ElastAlert with --verbose/--debug, the log level of
+# the "elastalert" logger is changed to INFO, if not already INFO/DEBUG.
+#logging:
+#  version: 1
+#  incremental: false
+#  disable_existing_loggers: false
+#  formatters:
+#    logline:
+#      format: '%(asctime)s %(levelname)+8s %(name)+20s %(message)s'
+#
+#    handlers:
+#      console:
+#        class: logging.StreamHandler
+#        formatter: logline
+#        level: DEBUG
+#        stream: ext://sys.stderr
+#
+#      file:
+#        class : logging.FileHandler
+#        formatter: logline
+#        level: DEBUG
+#        filename: elastalert.log
+#
+#    loggers:
+#      elastalert:
+#        level: WARN
+#        handlers: []
+#        propagate: true
+#
+#      elasticsearch:
+#        level: WARN
+#        handlers: []
+#        propagate: true
+#
+#      elasticsearch.trace:
+#        level: WARN
+#        handlers: []
+#        propagate: true
+#
+#      '':  # root logger
+#        level: WARN
+#          handlers:
+#            - console
+#            - file
+#        propagate: false

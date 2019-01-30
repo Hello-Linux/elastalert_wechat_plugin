@@ -1,0 +1,62 @@
+# From example_rules/example_frequency.yaml
+# 如果你想使用多个elasticsearch那么就请配置下面的地址
+#es_host: elasticsearch.example.com
+#es_port: 9200
+#报警规则名字,全局唯一
+name: schedule
+
+#定义报警的类型,这里我以frequency为例,当给定时间至少有一定数量的事件出现时触发报警.官方文档:https://elastalert.readthedocs.io/en/latest/ruletypes.html#rule-types
+type: frequency
+
+#这里指定你的logstash索引
+index: logstash-schedule-*
+
+#出现的次数
+num_events: 5
+
+#定义一分钟内出现了5次触发报警
+timeframe:
+    minutes: 1
+#filer插件定义我们要过滤的条件具体可以参考官方文档
+filter:
+- query:
+    query_string:
+        query: "message: Exception OR message: ERROR"
+
+# (Required)
+# The alert is use when a match is found
+# 调用我们的报警插件
+alert:
+- "elastalert_modules.wechat_qiye_alert.WeChatAlerter"
+
+###############后面主要是定义我们的报警模板这里不再赘述具体还是参考官方文档
+alert_text_type: alert_text_only
+alert_text: |
+  ========start===========
+  告警程序: ElasticSearch_Alert
+  触发时间: {}
+  告警主题: 线上后端 {} 服务异常
+  触发条件: 一分钟内 >= {} 次
+  异常内容: {}
+  ========end============
+alert_text_args:
+  - "@timestamp"
+  - name
+  - num_hits
+  - message
+
+
+#后台登陆后【设置】->【权限管理】->【普通管理组】->【创建并设置通讯录和应用权限】->【CorpID，Secret】
+#设置微信企业号的appid
+corp_id: xxxxxxx
+#设置微信企业号的Secret
+secret: xxxxxxxxxxxx
+#后台登陆后【应用中心】->【选择应用】->【应用id】
+#设置微信企业号应用id
+agent_id: xxxxxxxxx
+#部门id
+party_id: xxxx
+#用户微信号
+user_id: 'xxxxxx'
+# 标签id
+#tag_id: 1
