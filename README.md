@@ -7,7 +7,9 @@
 下面主要介绍一下该插件的使用方法
 * 第一步:
 
-首先你要确保你已经安装好了python的报警框架elastalert(https://github.com/Yelp/elastalert.git),具体的安装方法可以参考官方的文档https://elastalert.readthedocs.io/en/latest/running_elastalert.html
+首先你要确保你已经安装好了python的报警框架elastalert(https://github.com/Yelp/elastalert.git)
+具体的安装方法可以参考官方的文档https://elastalert.readthedocs.io/en/latest/running_elastalert.html
+
 下面我以克隆仓库安装为例
 (1)git clone https://github.com/Yelp/elastalert.git
 (2)之后使用python2.7的pip管理工具安装依赖包 pip install -r requirements.txt pip install -r requirements-dev.txt
