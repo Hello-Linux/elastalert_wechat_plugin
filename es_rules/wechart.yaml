@@ -11,6 +11,20 @@ type: frequency
 #这里指定你的logstash索引
 index: logstash-schedule-*
 
+#++++++++++++++++++++++++++++++下面主要是减少重复告警的频率+++++++++++++++++++++++++++++
+#5分钟内如果有重复报警，那么当name不同时，会当做不同的报警处理 可以是数组呦
+query_key:
+  - name
+
+# 5分钟内相同的报警不会重复发送
+realert:
+  minutes: 5
+
+# 指数级扩大 realert 时间，中间如果有报警则按照 5 -> 10 -> 20 -> 40 -> 60 不断增大报警时间到制定的最大时间，
+# 如果之后报警减少，则会慢慢恢复原始 realert 时间
+exponential_realert:
+  hours: 1
+
 #出现的次数
 num_events: 5
 

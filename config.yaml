@@ -73,20 +73,6 @@ writeback_index: elastalert_status
 # sending the alert until this time period has elapsed
 alert_time_limit:
   days: 1
-#++++++++++++++++++++++++++++++下面主要是针对重复报警+++++++++++++++++++++++++++++
-# 10 分钟内如果有重复报警，那么当 name 不同时，会当做不同的报警处理 可以是数组
-#query_key:
-#  - name
-
-# 10分钟内相同的报警不会重复发送
-#realert:
-#  minutes: 10
-
-# 指数级扩大 realert 时间，中间如果有报警
-# 则按照 5 -> 10 -> 20 -> 40 -> 60 不断增大报警时间到制定的最大时间，
-# 如果之后报警减少，则会慢慢恢复原始 realert 时间
-#exponential_realert:
-#  hours: 1
 
 # 根据报警的内容，将相同的报警按照name进行聚合
 aggregation_key: name
