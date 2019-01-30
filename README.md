@@ -54,8 +54,7 @@ python2.7 -m elastalert.elastalert --verbose --config config.yaml --rule es_rule
 ```
     config指定配置文件路径  rule指定你的微信报警文件
 
-
-    如果需要更加详细的安装过程以及说明请参考我的今日头条呦[今日头条](http://mp.toutiao.com/preview_article/?pgc_id=6652174479763964419) 
+如果需要更加详细的安装过程以及说明请参考我的今日头条呦[今日头条](http://mp.toutiao.com/preview_article/?pgc_id=6652174479763964419) 
 
 # 运行样例截图:
 ![image](https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/elastalert.jpg)
