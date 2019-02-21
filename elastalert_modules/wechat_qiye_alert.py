@@ -18,10 +18,11 @@ class WeChatAlerter(Alerter):
     #企业号id(在你申请的企业信息里面可以看到)，secret(在你创建企业应用小程序之后可以看到secret字段每个应用对应一个secret)，应用id(应用程序的AgentId)
 
     required_options = frozenset(['corp_id','secret','agent_id'])
-'''
-下面这些数值是依赖Alerter函数从你的rule配置文件中获取的,所以不需要赋值
-'''
+
     def __init__(self, *args):
+        '''
+        下面这些数值是依赖Alerter函数从你的rule配置文件中获取的,所以不需要赋值
+        '''
         super(WeChatAlerter, self).__init__(*args)
         self.corp_id = self.rule.get('corp_id', '')     #企业号id
         self.secret = self.rule.get('secret', '')   #secret
