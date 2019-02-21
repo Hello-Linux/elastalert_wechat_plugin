@@ -57,4 +57,7 @@ python2.7 -m elastalert.elastalert --verbose --config config.yaml --rule es_rule
 如果需要更加详细的安装过程以及说明请参考我的今日头条呦[今日头条](https://www.toutiao.com/i6652174479763964419) 
 
 # 运行样例截图:
-![image](https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/elastalert.jpg)
+<img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/elastalert.jpg" width="600" height="600" />
+<img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/appid.png" width="600" height="600" />
+<img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/agentdid.png" width="600" height="600" />
+<img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/party_id.png" width="600" height="600" />
