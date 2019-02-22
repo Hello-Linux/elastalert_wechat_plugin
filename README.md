@@ -58,7 +58,29 @@ python2.7 -m elastalert.elastalert --verbose --config config/config.yaml --rule 
 
 ## Docker 镜像部署
 
-### `仓库地址`
+启动
+docker push hellolinux/elastalert_wechat_plugin:latest
+docker run -d hellolinux/elastalert_wechat_plugin:latest
+```Bash
+
+### `镜像自定义配置文件部署`
+下载git代码https://github.com/Hello-Linux/elastalert_wechat_plugin.git 之后里面有config 以及es_rules文件,将里面的配置文件以及规则配置文件修改后挂载到你的容器里面即可
+
+```Bash
+cd elastalert_wechat_plugin
+docker run -d -v `pwd`/config:/opt/elastalert/config -v `pwd`/es_rules:/opt/elastalert/es_rules hellolinux/elastalert_wechat_plugin:latest
+```
+
+### `自定义elastalert版本`
+Dockerfile中存在环境变量 ENV ELASTALERT_VERSION 默认数值为v0.1.38
+修改为其他版本执行
+```Bash
+docker -e ELASTALERT_VERSION=版本号
+```
+
+docker 
+```
+### `docker镜像地址`
 [Docker镜像](https://hub.docker.com/r/hellolinux/elastalert_wechat_plugin)
 
 
@@ -70,4 +92,4 @@ python2.7 -m elastalert.elastalert --verbose --config config/config.yaml --rule 
 <img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/user_id.png" width="600" height="600" />
 
 ### `伸出您可爱的双手支持一下作者呗！给他一点继续更新下去的勇气!`
-<img src="http://img.blog.csdn.net/20160901115841737" width="700" height="700" />
+<img src="http://img.blog.csdn.net/20160901115841737" width="500" height="500" />
