@@ -60,9 +60,10 @@ python2.7 -m elastalert.elastalert --verbose --config config/config.yaml --rule 
 ## Docker 镜像部署
 
 启动
+```Bash
 docker push hellolinux/elastalert_wechat_plugin:latest
 docker run -d hellolinux/elastalert_wechat_plugin:latest
-```Bash
+```
 
 ### `镜像自定义配置文件部署`
 下载git代码https://github.com/Hello-Linux/elastalert_wechat_plugin.git 之后里面有config 以及es_rules文件,将里面的配置文件以及规则配置文件修改后挂载到你的容器里面即可
