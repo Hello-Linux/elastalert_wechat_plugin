@@ -4,6 +4,7 @@ Elastalert_Wechat_Plugin
 基于ElastAlert的微信企业号报警插件
 -----
 
+### Docker镜像的使用方法在普通安装下面
 ## 使用说明
     申请企业微信公众号在这里我就不详细说明了,大家可以看看网上的教程去申请
     下面主要介绍一下该插件的使用方法
@@ -78,8 +79,6 @@ Dockerfile中存在环境变量 ENV ELASTALERT_VERSION 默认数值为v0.1.38
 docker -e ELASTALERT_VERSION=版本号
 ```
 
-docker 
-```
 ### `docker镜像地址`
 [Docker镜像](https://hub.docker.com/r/hellolinux/elastalert_wechat_plugin)
 
