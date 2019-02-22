@@ -55,7 +55,7 @@ python2.7 -m elastalert.elastalert --verbose --config config/config.yaml --rule 
 ```
     config指定配置文件路径  rule指定你的微信报警文件
 
-如果需要更加详细的安装过程以及说明请参考我的今日头条呦[今日头条](https://www.toutiao.com/i6652174479763964419) 
+如果需要更加详细的安装过程以及说明请参考我的今日头条呦[今日头条](https://www.toutiao.com/i6652174479763964419)
 
 ## Docker 镜像部署
 
