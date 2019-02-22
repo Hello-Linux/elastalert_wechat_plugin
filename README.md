@@ -56,6 +56,12 @@ python2.7 -m elastalert.elastalert --verbose --config config/config.yaml --rule 
 
 如果需要更加详细的安装过程以及说明请参考我的今日头条呦[今日头条](https://www.toutiao.com/i6652174479763964419) 
 
+## Docker 镜像部署
+
+### `仓库地址`
+[Docker镜像](https://hub.docker.com/r/hellolinux/elastalert_wechat_plugin)
+
+
 # 运行样例截图:
 <img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/elastalert.jpg" width="600" height="600" />
 <img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/appid.png" width="600" height="600" />
