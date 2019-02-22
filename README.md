@@ -61,7 +61,6 @@ python2.7 -m elastalert.elastalert --verbose --config config/config.yaml --rule 
 
 启动
 ```Bash
-docker push hellolinux/elastalert_wechat_plugin:latest
 docker run -d hellolinux/elastalert_wechat_plugin:latest
 ```
 
