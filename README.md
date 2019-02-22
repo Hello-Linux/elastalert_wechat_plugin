@@ -32,7 +32,7 @@ python2.7 setup.py install
 ### `第二步`
 
     修改配置文件
-    打开config.yaml按照里面的说明进行配置,其中es_rules中放置的是我写的一个wechat规则模板大家可以简单修改一下继续使用
+    打开config/config.yaml按照里面的说明进行配置,其中es_rules中放置的是我写的一个wechat规则模板大家可以简单修改一下继续使用
 
 ### `第三步`
 
@@ -50,7 +50,7 @@ $ python2.7 create_index.py --host es_host --port ex_post --username es_username
 ### `第五步`
     启动
 ```Bash
-python2.7 -m elastalert.elastalert --verbose --config config.yaml --rule es_rules/wechart.yaml
+python2.7 -m elastalert.elastalert --verbose --config config/config.yaml --rule es_rules/wechart.yaml
 ```
     config指定配置文件路径  rule指定你的微信报警文件
 
