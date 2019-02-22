@@ -68,3 +68,6 @@ python2.7 -m elastalert.elastalert --verbose --config config/config.yaml --rule 
 <img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/agentdid.png" width="600" height="600" />
 <img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/party_id.png" width="600" height="600" />
 <img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/user_id.png" width="600" height="600" />
+
+### `伸出您可爱的双手支持一下作者呗！给他一点继续更新下去的勇气!`
+<img src="http://img.blog.csdn.net/20160901115841737" width="700" height="700" />
