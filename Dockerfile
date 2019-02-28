@@ -15,10 +15,15 @@ ENV ELASTALERT_PLUGIN_DIRECTORY /opt/elastalert/elastalert_modules
 #Elasticsearch 工作目录
 WORKDIR /opt/elastalert
 
+COPY config/config.yaml /opt/elastalert/
+COPY ./es_rules/* ${RULES_DIRECTORY}/
+COPY ./elastalert_modules/* ${ELASTALERT_PLUGIN_DIRECTORY}/
 
 RUN apk --update upgrade && \
-    apk add curl tar musl-dev linux-headers gcc libffi-dev libffi openssl-dev && \
-		rm -rf /var/cache/apk/* && \
+    apk add curl tar musl-dev linux-headers gcc libffi-dev libffi openssl-dev tzdata && \
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo "Asia/Shanghai" > /etc/timezone && \
+    rm -rf /var/cache/apk/* && \
     mkdir -p ${ELASTALERT_PLUGIN_DIRECTORY} && \
     mkdir -p ${ELASTALERT_CONFIG} && \
     mkdir -p ${RULES_DIRECTORY} && \
@@ -28,15 +33,12 @@ RUN apk --update upgrade && \
     pip install "setuptools>=11.3" && \
 		pip install "elasticsearch>=5.0.0" && \
     python setup.py install && \
-		apk del gcc libffi-dev musl-dev && \
-		echo "#!/bin/sh" >> /opt/elastalert/run.sh && \
-		echo "elastalert-create-index --no-ssl --no-verify-certs --config config/config.yaml" >> run.sh && \
-	  echo "elastalert --config --config config/config.yaml" >> run.sh && \
+	  apk del gcc libffi-dev musl-dev && \
+	  echo "#!/bin/sh" >> /opt/elastalert/run.sh && \
+	  echo "elastalert-create-index --no-ssl --no-verify-certs --config /opt/elastalert/config/config.yaml" >> run.sh && \
+	  echo "elastalert --config /opt/elastalert/config/config.yaml" >> run.sh && \
 	  chmod +x /opt/elastalert/run.sh
 
-COPY config/config.yaml /opt/elastalert/
-COPY ./es_rules/* ${RULES_DIRECTORY}/
-COPY ./elastalert_modules/* ${ELASTALERT_PLUGIN_DIRECTORY}/
 
 
 # Launch Elastalert when a container is started.
