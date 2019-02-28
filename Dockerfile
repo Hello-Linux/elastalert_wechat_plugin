@@ -37,8 +37,7 @@ RUN apk --update upgrade && \
 	  echo "elastalert --config /opt/elastalert/config/config.yaml" >> run.sh && \
 	  chmod +x /opt/elastalert/run.sh
 	  
-COPY config/config.yaml /opt/elastalert/
-COPY ./es_rules/* ${RULES_DIRECTORY}/
+	  
 COPY ./elastalert_modules/* ${ELASTALERT_PLUGIN_DIRECTORY}/
 
 
