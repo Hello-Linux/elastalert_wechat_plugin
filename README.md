@@ -44,7 +44,7 @@ python2.7 setup.py install
     创建Elasticsearch索引
     进入我们的项目目录./elastalert/elastalert/ 执行
 ```Bash
-$ python2.7 create_index.py --host es_host --port ex_post --username es_username --password es_password --no-ssl --no-verify-certs
+python2.7 create_index.py --config config.yaml --host es_host --port ex_post --username es_username --password es_password --no-ssl --no-verify-certs
 ```
     这个命令会在elasticsearch创建索引，便于ElastAlert将有关其查询及其警报的信息和元数据保存回Elasticsearch。这不是必须的步骤，但是强烈建议创建。因为对于审计，测试很有用，并且重启elastalert不影响计数和发送alert。默认情况下，创建的索引叫 elastalert_status
 
@@ -69,6 +69,8 @@ docker run -d hellolinux/elastalert_wechat_plugin:latest
 
 ```Bash
 cd elastalert_wechat_plugin
+```
+```Bash
 docker run -d -v `pwd`/config:/opt/elastalert/config -v `pwd`/es_rules:/opt/elastalert/es_rules hellolinux/elastalert_wechat_plugin:latest
 ```
 
