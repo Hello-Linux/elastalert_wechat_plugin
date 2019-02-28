@@ -15,9 +15,7 @@ ENV ELASTALERT_PLUGIN_DIRECTORY /opt/elastalert/elastalert_modules
 #Elasticsearch 工作目录
 WORKDIR /opt/elastalert
 
-COPY config/config.yaml /opt/elastalert/
-COPY ./es_rules/* ${RULES_DIRECTORY}/
-COPY ./elastalert_modules/* ${ELASTALERT_PLUGIN_DIRECTORY}/
+
 
 RUN apk --update upgrade && \
     apk add curl tar musl-dev linux-headers gcc libffi-dev libffi openssl-dev tzdata && \
@@ -38,7 +36,10 @@ RUN apk --update upgrade && \
 	  echo "elastalert-create-index --no-ssl --no-verify-certs --config /opt/elastalert/config/config.yaml" >> run.sh && \
 	  echo "elastalert --config /opt/elastalert/config/config.yaml" >> run.sh && \
 	  chmod +x /opt/elastalert/run.sh
-
+	  
+COPY config/config.yaml /opt/elastalert/
+COPY ./es_rules/* ${RULES_DIRECTORY}/
+COPY ./elastalert_modules/* ${ELASTALERT_PLUGIN_DIRECTORY}/
 
 
 # Launch Elastalert when a container is started.
