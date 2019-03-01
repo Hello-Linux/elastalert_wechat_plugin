@@ -85,6 +85,33 @@ docker -e ELASTALERT_VERSION=版本号
 [Docker镜像](https://hub.docker.com/r/hellolinux/elastalert_wechat_plugin)
 
 
+常见问题解答
+=======
+1.报警时间显示的是UTC时间
+  这个主要是由于logstash传递给Elasticsearch 后使用的是底层UTC时间,解决办法主要是从logstash filter 入手使用date 或者grok 自定义timestamp时间戳
+
+date filter插件:
+```Bash
+filter {
+date {
+match =>["timestamp","dd/MMM/yyyy:HH:mm:ss"]
+target =>"@timestamp"
+locale=>"en"
+timezone =>"UTC"
+  }
+}
+```
+上面timestamp是指你日志中的时间字段,后面的"dd/MMM/yyyy:HH:mm:ss" 指的是你的日志格式这个取决于你的日志呦不一定跟我一样
+
+date filter插件
+```Bash
+filter {
+grok {
+  match => {"message" => "(?<logtime>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{1,3})"}
+  }
+}
+```
+上面这个只是简单的匹配日志中的时间,具体还是看自己的情况,这里是添加了一个logtime字段,由于是换了字段,你的报警插件里面的@timestamp也要换成logtime字段
 # 运行样例截图:
 <img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/elastalert.jpg" width="600" height="600" />
 <img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/appid.png" width="600" height="600" />
