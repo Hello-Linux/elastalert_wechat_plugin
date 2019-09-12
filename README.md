@@ -85,10 +85,10 @@ docker -e ELASTALERT_VERSION=版本号
 [Docker镜像](https://hub.docker.com/r/hellolinux/elastalert_wechat_plugin)
 
 
-常见问题解答
+#常见问题解答
 =======
-1.报警时间显示的是UTC时间
-  这个主要是由于logstash传递给Elasticsearch 后使用的是底层UTC时间,解决办法主要是从logstash filter 入手使用date 或者grok 自定义timestamp时间戳
+#### `1.报警时间显示的是UTC时间`
+这个主要是由于logstash传递给Elasticsearch 后使用的是底层UTC时间,解决办法主要是从logstash filter 入手使用date 或者grok 自定义timestamp时间戳
 
 date filter插件:
 ```Bash
@@ -111,7 +111,13 @@ grok {
   }
 }
 ```
-上面这个只是简单的匹配日志中的时间,具体还是看自己的情况,这里是添加了一个logtime字段,由于是换了字段,你的报警插件里面的@timestamp也要换成logtime字段
+上面这个只是简单的匹配日志中的时间,具体还是看自己的情况,这里是添加了一个logtime字段,由于是换了字段,你的报警插件里面的
+alert_text_args:
+  - @timestamp
+  - message
+@timestamp也要换成logtime字段即可
+#### `2.如何给企业微信多个部分发送告警`
+目前这个还没有时间去做，如果折中的实现方案就是在es_rules中编写多个规则来间接实现多个部门ID的告警发送
 # 运行样例截图:
 <img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/elastalert.jpg" width="600" height="600" />
 <img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/appid.png" width="600" height="600" />
