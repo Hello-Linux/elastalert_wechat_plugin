@@ -46,7 +46,7 @@ python2.7 setup.py install
 ```Bash
 python2.7 create_index.py --config ../config/config.yaml --host es_host --port ex_post --username es_username --password es_password --no-ssl --no-verify-certs
 ```
-    这个命令会在elasticsearch创建索引，便于ElastAlert将有关其查询及其警报的信息和元数据保存回Elasticsearch。这不是必须的步骤，但是强烈建议创建。因为对于审计，测试很有用，并且重启elastalert不影响计数和发送alert。默认情况下，创建的索引叫 elastalert_status
+这个命令会在elasticsearch创建索引，便于ElastAlert将有关其查询及其警报的信息和元数据保存回Elasticsearch。这不是必须的步骤，但是强烈建议创建。因为对于审计，测试很有用，并且重启elastalert不影响计数和发送alert。默认情况下，创建的索引叫 elastalert_status
 
 ### `第五步`
     启动
