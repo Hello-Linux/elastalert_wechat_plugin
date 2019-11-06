@@ -120,6 +120,9 @@ alert_text_args:
 @timestamp也要换成logtime字段即可
 #### `2.如何给企业微信多个部门发送告警`
 目前这个还没有时间去做，如果折中的实现方案就是在es_rules中编写多个规则来间接实现多个部门ID的告警发送
+
+#### `3.企业微信收不到报警`
+这个主要是检查你的报警规则有没有触发，其次就是你的微信公众号里面的配置是否都正确
 # 运行样例截图:
 <img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/elastalert.jpg" width="600" height="600" />
 <img src="https://github.com/Hello-Linux/elastalert_wechat_plugin/blob/master/images/appid.png" width="600" height="600" />
