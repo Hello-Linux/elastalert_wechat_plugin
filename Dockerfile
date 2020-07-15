@@ -4,7 +4,7 @@ LABEL description="ElastAlert suitable for Docker Kubernetes"
 MAINTAINER hello_linux@aliyun.com
 
 #Elastalert的release版本号
-ENV ELASTALERT_VERSION v0.1.38
+ENV ELASTALERT_VERSION v0.2.4
 ENV ELASTALERT_URL https://github.com/Yelp/elastalert/archive/${ELASTALERT_VERSION}.tar.gz
 #Elasticsearch目录设置
 ENV ELASTALERT_HOME /opt/elastalert
